@@ -1,6 +1,8 @@
 /* eslint-disable react/prop-types */
 import { ChevronLeft, ChevronRight, Power } from 'lucide-react'
 import { createContext, useContext, useEffect, useState } from 'react'
+import en from '../assets/images/EN.png'
+import fr from '../assets/images/FR.png'
 import logo from '../assets/images/logo.png'
 import qrcode from '../assets/qrcodes/qrcode-blanc.png'
 import { Button } from '../ui/button'
@@ -157,16 +159,16 @@ const CardsQr = () => {
             }}
             defaultValue={selectedLanguage}
           >
-            <SelectTrigger className="w-[80px] text-2xl">
+            <SelectTrigger className="w-[80px]">
               <SelectValue placeholder="Select a language" />
             </SelectTrigger>
             <SelectContent>
               <SelectGroup>
                 <SelectItem className="text-2xl" value="francais">
-                  🇫🇷
+                  <img src={fr} alt="FR" className="h-7 w-7" />
                 </SelectItem>
                 <SelectItem className="text-2xl" value="english">
-                  🇺🇸
+                  <img src={en} alt="EN" className="h-7 w-7" />
                 </SelectItem>
               </SelectGroup>
             </SelectContent>
