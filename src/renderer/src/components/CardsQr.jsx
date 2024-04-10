@@ -2,8 +2,9 @@
 import { ChevronLeft, ChevronRight, Power } from 'lucide-react'
 import { createContext, useContext, useEffect, useState } from 'react'
 import en from '../assets/images/EN.png'
+import eu from '../assets/images/EU.png'
 import fr from '../assets/images/FR.png'
-import logo from '../assets/images/logo.png'
+import logo from '../assets/images/logo1.png'
 import qrcode from '../assets/qrcodes/qrcode-blanc.png'
 import { Button } from '../ui/button'
 import {
@@ -193,8 +194,13 @@ const CardsQr = () => {
       <div className="flex w-full justify-center bg-fixed bg-center">
         <div className="px-10">
           <div className="grid grid-cols-3 gap-y-10 gap-x-5">
-            <div className="flex items-center justify-center rounded-lg">
-              <img src={logo} alt="Logo" className="h-full w-full object-contain scale-100" />
+            <div className="flex items-center flex-col mx-5">
+              <img src={logo} alt="Logo" className="h-full w-full object-contain scale-80" />
+              <img
+                src={eu}
+                alt="Logo"
+                className="h-1/2 w-1/2 object-contain rounded-lg scale-100"
+              />
             </div>
             {sites.map((site) => (
               <Card1
