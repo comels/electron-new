@@ -1,42 +1,49 @@
 import { contextBridge, ipcRenderer } from 'electron'
 const dotenv = require('dotenv')
 
+// Chargement des variables d'environnement
 dotenv.config()
 
+// Liste des chaînes de canal autorisées pour la communication dans les deux sens
+const validChannels = ['update-view-status']
+
 const api = {
+  // Ouvrir une nouvelle fenêtre avec l'URL spécifiée
   openNewWindow: (url) => ipcRenderer.send('open-new-window', url),
+  // Fermer la vue courante
   closeCurrentView: () => ipcRenderer.send('close-current-view'),
+  // Naviguer vers l'arrière
   navigateBack: () => ipcRenderer.send('navigate-back'),
+  // Naviguer vers l'avant
   navigateForward: () => ipcRenderer.send('navigate-forward'),
+  // Appeler des méthodes du processus principal et attendre une réponse
+  invoke: (channel, ...args) => ipcRenderer.invoke(channel, ...args),
+  // Signaler une activité détectée
   sendActivityDetected: () => ipcRenderer.send('activity-detected'),
+  // Quitter l'application
   quitApp: () => ipcRenderer.send('quit-app'),
+  // Obtenir le mot de passe à partir des variables d'environnement
   getPassword: () => process.env.PASSWORD,
-  // Ajouter une méthode pour écouter les événements IPC
+  // S'abonner à des événements du processus principal
   on: (channel, func) => {
-    // Liste des chaînes de canal autorisées pour éviter des vulnérabilités
-    const validChannels = ['update-view-status']
     if (validChannels.includes(channel)) {
-      // Utiliser ipcRenderer.on de manière sécurisée
       ipcRenderer.on(channel, (event, ...args) => func(...args))
     }
   },
-  // Ajouter une méthode pour retirer les écouteurs d'événements IPC
+  // Se désabonner des événements du processus principal
   removeListener: (channel, func) => {
-    // Liste des chaînes de canal autorisées
-    const validChannels = ['update-view-status']
     if (validChannels.includes(channel)) {
-      // Utiliser ipcRenderer.removeListener de manière sécurisée
       ipcRenderer.removeListener(channel, func)
     }
   }
 }
 
+// Exposer l'API dans le monde principal de manière sécurisée
 if (process.contextIsolated) {
-  try {
-    contextBridge.exposeInMainWorld('electronAPI', api)
-  } catch (error) {
-    console.error("Erreur lors de l'exposition de l'API Electron :", error)
-  }
+  contextBridge.exposeInMainWorld('electronAPI', api)
 } else {
-  window.electronAPI = api
+  console.error(
+    "Le contexte d'isolation est désactivé, ce qui peut entraîner des risques de sécurité."
+  )
+  window.electronAPI = api // Fallback pour les versions plus anciennes ou pour le développement
 }

@@ -68,7 +68,6 @@ function createNewWindow(url) {
       contextIsolation: true // Isolation de contexte pour une sécurité accrue.
     }
   })
-
   // Configure et ajoute la nouvelle vue à la fenêtre principale.
   mainWindow.setBrowserView(currentView)
   currentView.setAutoResize({ width: true, height: true }) // Active le redimensionnement automatique.
@@ -143,6 +142,11 @@ ipcMain.on('navigate-forward', () => {
 
 ipcMain.on('open-new-window', (event, url) => {
   createNewWindow(url) // Ouvre une nouvelle fenêtre avec l'URL spécifiée.
+})
+
+// Renvoie l'état actuel de la vue courante au processus de rendu.
+ipcMain.handle('get-current-view', () => {
+  return currentView !== null
 })
 
 // Ferme la vue courante et informe le processus de rendu.

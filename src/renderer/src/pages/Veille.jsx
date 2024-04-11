@@ -38,15 +38,17 @@ const Veille = () => {
   }, [width])
 
   return (
-    <img
-      ref={logoRef}
-      src={logo}
-      alt="logo"
-      className="fixed"
-      style={{
-        width: `${width}px`
-      }}
-    />
+    <div className="bg-gradient-to-r from-[#8acff0] to-[#000091] min-h-screen">
+      <img
+        ref={logoRef}
+        src={logo}
+        alt="logo"
+        className="fixed"
+        style={{
+          width: `${width}px`
+        }}
+      />
+    </div>
   )
 }
 
