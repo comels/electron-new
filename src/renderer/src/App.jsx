@@ -17,7 +17,7 @@ const App = () => {
     const resetTimer = () => {
       clearTimeout(timeout) // Arrête le timer précédent
       setIsActive(true) // Réactive l'état actif
-      timeout = setTimeout(handleInactivity, 30000) // Déclenche la vérification d'inactivité après 30 secondes
+      timeout = setTimeout(handleInactivity, 180000) // Déclenche la vérification d'inactivité après 30 secondes
     }
 
     /**

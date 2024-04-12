@@ -2,7 +2,7 @@ import { useEffect, useRef } from 'react'
 import logo from '../assets/images/logo1.png' // Assurez-vous que le chemin vers votre logo est correct
 
 const Veille = () => {
-  const width = 400 // Largeur du logo, ajustez selon les besoins
+  const width = 500 // Largeur du logo, ajustez selon les besoins
   const posX = useRef(0)
   const posY = useRef(0)
   const velocityX = useRef(1.5) // Vitesse initiale sur l'axe X, ajustez selon les besoins

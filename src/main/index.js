@@ -19,7 +19,7 @@ function createWindow() {
       width,
       height,
       show: false, // La fenêtre ne s'affichera pas immédiatement après sa création.
-      kiosk: false, // Active le mode kiosque.
+      kiosk: true, // Active le mode kiosque.
       autoHideMenuBar: true, // Empêche la barre de menu de se cacher automatiquement.
       webPreferences: {
         preload: join(__dirname, '../preload/index.js'), // Chemin vers le script de préchargement.
@@ -104,7 +104,7 @@ function resetInactivityTimer() {
   clearTimeout(inactivityTimer)
   inactivityTimer = setTimeout(() => {
     closeCurrentViewWithClearCache()
-  }, 180000) // Définit le délai d'inactivité à 3 minutes.
+  }, 120000) // Définit le délai d'inactivité à 2 minutes.
 }
 
 // Handler IPC pour la réinitialisation du minuteur d'inactivité suite à une activité détectée.
