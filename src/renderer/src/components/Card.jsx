@@ -6,6 +6,7 @@ const Card = ({ site, onClick, language }) => {
   const url = language === 'francais' ? site.href : site.hrefEnglish
   const name = language === 'francais' ? site.name : site.englishName
   const text = language === 'francais' ? site.text : site.englishText
+  const imageSrc = language === 'francais' ? site.imageSrc : site.imageSrcEn
 
   return (
     <button
@@ -16,7 +17,7 @@ const Card = ({ site, onClick, language }) => {
       <div className="bg-white bg-opacity-80 hover:bg-opacity-60 rounded-md w-full max-w-sm h-full flex flex-col p-2">
         <div className="bg-[#000091] flex-grow flex">
           <img
-            src={site.imageSrc}
+            src={imageSrc}
             alt={name}
             className="h-40 w-40 m-auto rounded-3xl p-2"
             loading="lazy"

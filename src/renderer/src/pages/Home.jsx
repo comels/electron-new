@@ -2,10 +2,11 @@
 import { ChevronLeft, ChevronRight, Power } from 'lucide-react'
 import { createContext, useContext, useEffect, useState } from 'react'
 import en from '../assets/images/EN.png'
-import eu from '../assets/images/EU.png'
 import fr from '../assets/images/FR.png'
-import logo from '../assets/images/logo1.png'
-import qrcode from '../assets/qrcodes/qrcode-blanc.png'
+//import eu from '../assets/images/EU.png'
+import logo from '../assets/images/PN-V.png'
+import qrcode from '../assets/images/qrcode.png'
+import qrcodeEn from '../assets/images/qrcode-en.png'
 import Card from '../components/Card'
 import { Button } from '../ui/button'
 import {
@@ -103,6 +104,7 @@ const Home = () => {
       href: 'https://www.maprocuration.gouv.fr/',
       hrefEnglish: 'https://www.maprocuration.gouv.fr/',
       imageSrc: qrcode,
+      imageSrcEn: qrcodeEn,
       name: 'Ma procuration',
       englishName: 'My proxy',
       text: 'Je souhaite déposer une demande de procuration.',
@@ -113,6 +115,7 @@ const Home = () => {
       href: 'https://www.service-public.fr/particuliers/vosdroits/R43241',
       hrefEnglish: 'https://www.service-public.fr/particuliers/vosdroits/R43241?lang=en',
       imageSrc: qrcode,
+      imageSrcEn: qrcodeEn,
       name: 'Opération tranquillité vacances',
       englishName: 'Operation tranquility holidays',
       text: 'Je souhaite signaler mon absence pour des patrouilles de surveillance.',
@@ -123,6 +126,7 @@ const Home = () => {
       href: 'https://www.masecurite.interieur.gouv.fr/fr/m-orienter',
       hrefEnglish: 'https://www.masecurite.interieur.gouv.fr/en/guide-yourself',
       imageSrc: qrcode,
+      imageSrcEn: qrcodeEn,
       name: "Je m'informe",
       englishName: 'I inform myself',
       text: 'Je souhaite obtenir des informations sur la sécurité.',
@@ -133,6 +137,7 @@ const Home = () => {
       href: 'https://www.masecurite.interieur.gouv.fr/fr',
       hrefEnglish: 'https://www.masecurite.interieur.gouv.fr/en',
       imageSrc: qrcode,
+      imageSrcEn: qrcodeEn,
       name: 'Ma sécurité',
       englishName: 'My security',
       text: 'Je suis victime / Je signale / Je m’informe.',
@@ -143,6 +148,7 @@ const Home = () => {
       href: 'https://www.service-public.fr/particuliers/vosdroits/N31138',
       hrefEnglish: 'https://www.service-public.fr/particuliers/vosdroits/N31138?lang=en',
       imageSrc: qrcode,
+      imageSrcEn: qrcodeEn,
       name: 'Plainte pour escroqueries',
       englishName: 'Complaint for fraud',
       text: "Je souhaite porter plainte pour escroqueries ou fraudes à l'adresse.",
@@ -197,12 +203,12 @@ const Home = () => {
         <div className="px-10">
           <div className="grid grid-cols-3 gap-y-10 gap-x-5">
             <div className="flex items-center flex-col mx-5">
-              <img src={logo} alt="Logo" className="h-full w-full object-contain scale-80" />
-              <img
+              <img src={logo} alt="Logo-PN" className="h-full w-full object-contain" />
+              {/* <img
                 src={eu}
-                alt="Logo"
+                alt="Logo-EU"
                 className="h-1/2 w-1/2 object-contain rounded-lg scale-100"
-              />
+              /> */}
             </div>
             {sites.map((site) => (
               <Card
@@ -223,16 +229,18 @@ const Home = () => {
               <Power className="text-[#000091] cursor-pointer" size={16} />
             </Button>
           </DialogTrigger>
-          <DialogContent className="sm:max-w-[425px]">
+          <DialogContent className="max-w-[425px]">
             <DialogHeader>
-              <DialogTitle className="text-[#000091]">Action réservée aux agents</DialogTitle>
-              <DialogDescription className=" text-xs">
-                Passible de lourdes sanctions.
-              </DialogDescription>
+              <DialogTitle className="text-[#000091] text-xl">
+                Action réservée aux agents
+              </DialogTitle>
+              <DialogDescription className=" text-sm">Passible d&apos;amendes.</DialogDescription>
             </DialogHeader>
             <form onSubmit={handlePasswordSubmit} className="grid gap-4 py-4">
               <div className="flex flex-col gap-4">
-                <Label htmlFor="password">Mot de passe</Label>
+                <Label className="text-base text-[#000091]" htmlFor="password">
+                  Mot de passe
+                </Label>
                 <Input
                   id="password"
                   type="password"
@@ -242,7 +250,9 @@ const Home = () => {
                 {errorMessage && <div className="text-red-500 text-xs">{errorMessage}</div>}
               </div>
               <DialogFooter>
-                <Button type="submit">Valider</Button>
+                <Button className="text-base" type="submit">
+                  Valider
+                </Button>
               </DialogFooter>
             </form>
           </DialogContent>

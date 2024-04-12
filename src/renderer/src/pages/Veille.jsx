@@ -1,8 +1,8 @@
 import { useEffect, useRef } from 'react'
-import logo from '../assets/images/logo.png' // Assurez-vous que le chemin vers votre logo est correct
+import logo from '../assets/images/PN-V.png' // Assurez-vous que le chemin vers votre logo est correct
 
 const Veille = () => {
-  const width = 600 // Largeur du logo, ajustez selon les besoins
+  const width = 400 // Largeur du logo, ajustez selon les besoins
   const posX = useRef(0)
   const posY = useRef(0)
   const velocityX = useRef(1.5) // Vitesse initiale sur l'axe X, ajustez selon les besoins
