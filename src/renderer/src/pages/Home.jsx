@@ -201,9 +201,9 @@ const Home = () => {
       )}
       <div className="flex w-full justify-center bg-fixed bg-center">
         <div className="px-10">
-          <div className="grid grid-cols-3 gap-y-10 gap-x-5">
+          <div className="grid grid-cols-3 gap-y-20 gap-x-10">
             <div className="flex items-center flex-col mx-5">
-              <img src={logo} alt="Logo-PN" className="h-full max-w-[300px] object-contain" />
+              <img src={logo} alt="Logo-PN" className="h-full max-w-[450px] object-contain" />
               {/* <img
                 src={eu}
                 alt="Logo-EU"

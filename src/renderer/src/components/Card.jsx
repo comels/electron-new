@@ -11,11 +11,11 @@ const Card = ({ site, onClick, language }) => {
   return (
     <button
       onClick={() => onClick(url)}
-      className="h-full mx-auto min-w-[400px]"
+      className="h-full mx-auto min-w-[550px] min-h-[400px]"
       aria-label={`Open ${name}`}
     >
-      <div className="bg-white bg-opacity-80 hover:bg-opacity-60 rounded-md w-full max-w-sm h-full flex flex-col p-2">
-        <div className="bg-[#000091] flex-grow flex">
+      <div className="bg-white bg-opacity-80 hover:bg-opacity-60 rounded-md w-full max-w-lg h-full flex flex-col p-2">
+        <div className="bg-[#000091] min-h-60 mb-5 flex-grow flex">
           <img
             src={imageSrc}
             alt={name}
