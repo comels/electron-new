@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react'
-import logo from '../assets/images/PN-V.png' // Assurez-vous que le chemin vers votre logo est correct
+import logo from '../assets/images/logo1.png' // Assurez-vous que le chemin vers votre logo est correct
 
 const Veille = () => {
   const width = 400 // Largeur du logo, ajustez selon les besoins
