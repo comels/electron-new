@@ -185,7 +185,7 @@ const Home = () => {
       )}
       {isViewOpen && (
         // Boutons de navigation
-        <div className="flex justify-between absolute top-0 left-0 right-0 mx-10 py-4">
+        <div className="flex gap-10 absolute top-0 left-0 right-0 mx-10 py-4">
           <div className="flex gap-7">
             <Button onClick={handleBackClick} variant="outline" size="icon">
               <ChevronLeft className="h-4 w-4" />

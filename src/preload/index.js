@@ -45,5 +45,7 @@ if (process.contextIsolated) {
   console.error(
     "Le contexte d'isolation est désactivé, ce qui peut entraîner des risques de sécurité."
   )
-  window.electronAPI = api // Fallback pour les versions plus anciennes ou pour le développement
+  if (typeof window !== 'undefined') {
+    window.electronAPI = api // Fallback pour les versions plus anciennes ou pour le développement
+  }
 }

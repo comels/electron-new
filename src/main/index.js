@@ -19,10 +19,11 @@ function createWindow() {
       width,
       height,
       show: false, // La fenêtre ne s'affichera pas immédiatement après sa création.
-      kiosk: true, // Active le mode kiosque.
+      // kiosk: true, // Active le mode kiosque.
       autoHideMenuBar: true, // Empêche la barre de menu de se cacher automatiquement.
       webPreferences: {
         preload: join(__dirname, '../preload/index.js'), // Chemin vers le script de préchargement.
+        contextIsolation: true, // Isolation de contexte pour une sécurité accrue.
         sandbox: false // Désactive le mode sandbox pour permettre plus de fonctionnalités.
       }
     })
@@ -65,7 +66,8 @@ function createNewWindow(url) {
   currentView = new BrowserView({
     webPreferences: {
       preload: join(__dirname, '../preload/index.js'), // Chemin vers le script de préchargement.
-      contextIsolation: true // Isolation de contexte pour une sécurité accrue.
+      contextIsolation: true, // Isolation de contexte pour une sécurité accrue.
+      sandbox: false // Désactive le mode sandbox pour permettre plus de fonctionnalités.
     }
   })
   // Configure et ajoute la nouvelle vue à la fenêtre principale.
@@ -83,15 +85,19 @@ function createNewWindow(url) {
   })
 
   // Ouvre les outils de développement pour cette vue.
-  // if (is.dev) currentView.webContents.openDevTools()
+  if (is.dev) currentView.webContents.openDevTools()
 
   // Écouteurs d'événements pour détecter l'activité de l'utilisateur et réinitialiser le minuteur d'inactivité.
   currentView.webContents.executeJavaScript(
     `
-    document.addEventListener('mousemove', () => { window.electronAPI.sendActivityDetected(); });
-    document.addEventListener('scroll', () => { window.electronAPI.sendActivityDetected(); });
-    document.addEventListener('keydown', () => { window.electronAPI.sendActivityDetected(); });
-    `,
+    if (window.electronAPI) {
+      document.addEventListener('mousemove', window.electronAPI.sendActivityDetected);
+      document.addEventListener('scroll', window.electronAPI.sendActivityDetected);
+      document.addEventListener('keydown', window.electronAPI.sendActivityDetected);
+    } else {
+      console.error('electronAPI is not available');
+    }
+        `,
     true
   )
 
@@ -104,7 +110,7 @@ function resetInactivityTimer() {
   clearTimeout(inactivityTimer)
   inactivityTimer = setTimeout(() => {
     closeCurrentViewWithClearCache()
-  }, 120000) // Définit le délai d'inactivité à 2 minutes.
+  }, 60000) // Définit le délai d'inactivité à 1 minute.
 }
 
 // Handler IPC pour la réinitialisation du minuteur d'inactivité suite à une activité détectée.
@@ -120,6 +126,7 @@ ipcMain.on('browser-view-swipe', (event, action) => {
 })
 
 ipcMain.on('activity-detected', () => {
+  console.log('Activity detected')
   resetInactivityTimer()
 })
 
