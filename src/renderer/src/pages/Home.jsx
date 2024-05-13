@@ -1,13 +1,21 @@
 /* eslint-disable react/prop-types */
 import { ChevronLeft, ChevronRight, Power } from 'lucide-react'
 import { createContext, useContext, useEffect, useState } from 'react'
+import { FaHome } from 'react-icons/fa'
 import en from '../assets/images/EN.png'
 import fr from '../assets/images/FR.png'
-//import eu from '../assets/images/EU.png'
+// import eu from '../assets/images/EU.png'
+import masecuritelogo from '../assets/images/MaSecurite-logo.png'
+import otvlogo from '../assets/images/OTV-logo.png'
+import rdvlogo from '../assets/images/RDV-logo.jpg'
+// import theseelogo from '../assets/images/THESEE-logo.png'
 import logo from '../assets/images/logo1.png'
 import qrcodeEn from '../assets/images/qrcode-en.png'
 import qrcode from '../assets/images/qrcode.png'
-import Card from '../components/Card'
+import theseelogo from '../assets/images/theseeblanc-logo.png'
+// import Card from '../components/Card'
+import Cardlogo from '../components/Cardlogo'
+
 import { Button } from '../ui/button'
 import {
   Dialog,
@@ -103,6 +111,7 @@ const Home = () => {
       id: 1,
       href: 'https://www.maprocuration.gouv.fr/',
       hrefEnglish: 'https://www.maprocuration.gouv.fr/',
+      logo: rdvlogo,
       imageSrc: qrcode,
       imageSrcEn: qrcodeEn,
       name: 'Ma procuration',
@@ -114,6 +123,7 @@ const Home = () => {
       id: 2,
       href: 'https://www.service-public.fr/particuliers/vosdroits/R43241',
       hrefEnglish: 'https://www.service-public.fr/particuliers/vosdroits/R43241?lang=en',
+      logo: otvlogo,
       imageSrc: qrcode,
       imageSrcEn: qrcodeEn,
       name: 'Opération tranquillité vacances',
@@ -123,19 +133,22 @@ const Home = () => {
     },
     {
       id: 3,
-      href: 'https://www.masecurite.interieur.gouv.fr/fr/m-orienter',
-      hrefEnglish: 'https://www.masecurite.interieur.gouv.fr/en/guide-yourself',
+      href: 'https://www.prefecturedepolice.interieur.gouv.fr/vos-services-en-ligne/police-rendez-vous',
+      hrefEnglish:
+        'https://www.prefecturedepolice.interieur.gouv.fr/vos-services-en-ligne/police-rendez-vous',
+      logo: rdvlogo,
       imageSrc: qrcode,
       imageSrcEn: qrcodeEn,
-      name: "Je m'informe",
+      name: 'Rendez-vous',
       englishName: 'I inform myself',
-      text: 'Je souhaite obtenir des informations sur la sécurité.',
-      englishText: 'I want to get information about security.'
+      text: 'Je souhaite prendre rendez-vous pour une démarche.',
+      englishText: 'I want to make an appointment for a procedure.'
     },
     {
       id: 4,
       href: 'https://www.masecurite.interieur.gouv.fr/fr',
       hrefEnglish: 'https://www.masecurite.interieur.gouv.fr/en',
+      logo: masecuritelogo,
       imageSrc: qrcode,
       imageSrcEn: qrcodeEn,
       name: 'Ma sécurité',
@@ -147,6 +160,7 @@ const Home = () => {
       id: 5,
       href: 'https://www.service-public.fr/particuliers/vosdroits/N31138',
       hrefEnglish: 'https://www.service-public.fr/particuliers/vosdroits/N31138?lang=en',
+      logo: theseelogo,
       imageSrc: qrcode,
       imageSrcEn: qrcodeEn,
       name: 'Plainte pour escroqueries',
@@ -186,17 +200,22 @@ const Home = () => {
       {isViewOpen && (
         // Boutons de navigation
         <div className="flex gap-10 absolute top-0 left-0 right-0 mx-10 py-4">
+          <Button onClick={handleCloseViewClick} className="text-lg" variant="outline">
+            <FaHome className="h-6 w-6 mr-3 text-[#000091]" />
+            {selectedLanguage === 'francais' ? (
+              <div className="text-[#000091] font-semibold tracking-wide">Accueil</div>
+            ) : (
+              <div className="text-[#000091]">Home</div>
+            )}
+          </Button>
           <div className="flex gap-7">
             <Button onClick={handleBackClick} variant="outline" size="icon">
-              <ChevronLeft className="h-4 w-4" />
+              <ChevronLeft className="h-4 w-4 text-[#000091]" />
             </Button>
             <Button onClick={handleForwardClick} variant="outline" size="icon">
-              <ChevronRight className="h-4 w-4" />
+              <ChevronRight className="h-4 w-4 text-[#000091]" />
             </Button>
           </div>
-          <Button onClick={handleCloseViewClick} className="text-lg" variant="outline">
-            {selectedLanguage === 'francais' ? "Retourner à l'accueil" : 'Back home'}
-          </Button>
         </div>
       )}
       <div className="flex w-full justify-center bg-fixed bg-center">
@@ -211,7 +230,7 @@ const Home = () => {
               /> */}
             </div>
             {sites.map((site) => (
-              <Card
+              <Cardlogo
                 key={site.id}
                 site={site}
                 onClick={handleButtonClick}
