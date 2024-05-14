@@ -11,7 +11,11 @@ import rdvlogo from '../assets/images/RDV-logo.jpg'
 // import theseelogo from '../assets/images/THESEE-logo.png'
 import logo from '../assets/images/logo1.png'
 import qrcodeEn from '../assets/images/qrcode-en.png'
-import qrcode from '../assets/images/qrcode.png'
+import qrcodeProcuration from '../assets/images/qrcode-procuration.png'
+import qrcodeOTV from '../assets/images/qrcode-OTV.png'
+import qrcodeRDV from '../assets/images/qrcode-RDV.png'
+import qrcodeSecurite from '../assets/images/qrcode-securite.png'
+import qrcodeThesee from '../assets/images/qrcode-THESEE.png'
 import theseelogo from '../assets/images/theseeblanc-logo.png'
 // import Card from '../components/Card'
 import Cardlogo from '../components/Cardlogo'
@@ -112,7 +116,7 @@ const Home = () => {
       href: 'https://www.maprocuration.gouv.fr/',
       hrefEnglish: 'https://www.maprocuration.gouv.fr/',
       logo: rdvlogo,
-      imageSrc: qrcode,
+      imageSrc: qrcodeProcuration,
       imageSrcEn: qrcodeEn,
       name: 'Ma procuration',
       englishName: 'My proxy',
@@ -124,7 +128,7 @@ const Home = () => {
       href: 'https://www.service-public.fr/particuliers/vosdroits/R43241',
       hrefEnglish: 'https://www.service-public.fr/particuliers/vosdroits/R43241?lang=en',
       logo: otvlogo,
-      imageSrc: qrcode,
+      imageSrc: qrcodeOTV,
       imageSrcEn: qrcodeEn,
       name: 'Opération tranquillité vacances',
       englishName: 'Operation tranquility holidays',
@@ -137,7 +141,7 @@ const Home = () => {
       hrefEnglish:
         'https://www.prefecturedepolice.interieur.gouv.fr/vos-services-en-ligne/police-rendez-vous',
       logo: rdvlogo,
-      imageSrc: qrcode,
+      imageSrc: qrcodeRDV,
       imageSrcEn: qrcodeEn,
       name: 'Rendez-vous',
       englishName: 'I inform myself',
@@ -149,7 +153,7 @@ const Home = () => {
       href: 'https://www.masecurite.interieur.gouv.fr/fr',
       hrefEnglish: 'https://www.masecurite.interieur.gouv.fr/en',
       logo: masecuritelogo,
-      imageSrc: qrcode,
+      imageSrc: qrcodeSecurite,
       imageSrcEn: qrcodeEn,
       name: 'Ma sécurité',
       englishName: 'My security',
@@ -161,7 +165,7 @@ const Home = () => {
       href: 'https://www.service-public.fr/particuliers/vosdroits/N31138',
       hrefEnglish: 'https://www.service-public.fr/particuliers/vosdroits/N31138?lang=en',
       logo: theseelogo,
-      imageSrc: qrcode,
+      imageSrc: qrcodeThesee,
       imageSrcEn: qrcodeEn,
       name: 'Plainte pour escroqueries',
       englishName: 'Complaint for fraud',
