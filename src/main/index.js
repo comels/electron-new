@@ -59,7 +59,7 @@ function createWindow() {
 // Crée et configure une nouvelle BrowserView pour afficher le contenu web.
 function createNewWindow(url) {
   // Supprime la vue actuelle si elle existe pour en créer une nouvelle.
-  if (currentView !== null) {
+  if (currentView !== null && mainWindow) {
     mainWindow.removeBrowserView(currentView)
   }
 
@@ -88,23 +88,31 @@ function createNewWindow(url) {
   // if (is.dev) currentView.webContents.openDevTools()
 
   // Ajoute un écouteur d'événements pour réappliquer les écouteurs d'activité lorsque la page est chargée.
-  currentView.webContents.on('did-finish-load', () => {
-    currentView.webContents.executeJavaScript(
-      `
-      if (window.electronAPI) {
-        document.addEventListener('mousemove', window.electronAPI.sendActivityDetected);
-        document.addEventListener('scroll', window.electronAPI.sendActivityDetected);
-        document.addEventListener('keydown', window.electronAPI.sendActivityDetected);
-      } else {
-        console.error('electronAPI is not available');
+
+  if (currentView) {
+    currentView.webContents.on('did-finish-load', () => {
+      if (mainWindow.getBrowserViews().includes(currentView)) {
+        currentView.webContents.executeJavaScript(
+          `
+          if (window.electronAPI) {
+            document.addEventListener('mousemove', window.electronAPI.sendActivityDetected);
+            document.addEventListener('scroll', window.electronAPI.sendActivityDetected);
+            document.addEventListener('keydown', window.electronAPI.sendActivityDetected);
+          } else {
+            console.error('electronAPI is not available');
+          }
+          `,
+          true
+        )
       }
-      `,
-      true
-    )
-  })
+    })
+  }
 
   // Informe le processus de rendu qu'une nouvelle vue est active.
-  mainWindow.webContents.send('update-view-status', true)
+
+  if (mainWindow) {
+    mainWindow.webContents.send('update-view-status', true)
+  }
 }
 
 // Réinitialise le minuteur d'inactivité pour fermer la vue courante après un délai.
@@ -128,7 +136,6 @@ ipcMain.on('browser-view-swipe', (event, action) => {
 })
 
 ipcMain.on('activity-detected', () => {
-  console.log('Activity detected')
   resetInactivityTimer()
 })
 
@@ -160,7 +167,7 @@ ipcMain.handle('get-current-view', () => {
 
 // Ferme la vue courante et informe le processus de rendu.
 function closeCurrentView() {
-  if (currentView) {
+  if (currentView && mainWindow) {
     currentView.webContents.session.clearStorageData().then(() => {
       mainWindow.removeBrowserView(currentView)
       currentView = null // Réinitialise la vue courante à null.
