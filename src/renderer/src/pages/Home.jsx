@@ -142,7 +142,7 @@ const Home = () => {
       imageSrc: qrcodeRDV,
       imageSrcEn: qrcodeEn,
       name: 'Rendez-vous',
-      englishName: 'I inform myself',
+      englishName: 'Appointment',
       text: 'Je souhaite prendre rendez-vous dans un commissariat.',
       englishText: 'I would like to make an appointment at a police station.'
     },
