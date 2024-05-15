@@ -25,8 +25,8 @@ const Cardlogo = ({ site, onClick, language }) => {
         </div>
         <div className="p-3 flex flex-col justify-between flex-grow">
           <div>
-            <h1 className="text-2xl text-left font-semibold text-[#000091]">{name}</h1>
-            <p className="text-base text-left text-gray-600">{text}</p>
+            <h1 className="text-2xl mb-1 text-left font-semibold text-[#000091]">{name}</h1>
+            <p className="text-lg text-left text-gray-600">{text}</p>
           </div>
           <div className="flex justify-end">
             <ArrowRight className="text-[#000091] mt-4 mx-2" />

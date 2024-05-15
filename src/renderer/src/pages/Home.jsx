@@ -5,8 +5,9 @@ import { FaHome } from 'react-icons/fa'
 import en from '../assets/images/EN.png'
 import fr from '../assets/images/FR.png'
 import masecuritelogo from '../assets/images/MaSecurite-logo.png'
+import maprocurationlogo from '../assets/images/MaProcuration-logo.png'
 import otvlogo from '../assets/images/OTV-logo.png'
-import rdvlogo from '../assets/images/RDV-logo.jpg'
+import rdvlogo from '../assets/images/RDV-logo.png'
 // import theseelogo from '../assets/images/THESEE-logo.png'
 import logo from '../assets/images/logo1.png'
 import qrcodeOTV from '../assets/images/qrcode-OTV.png'
@@ -113,7 +114,7 @@ const Home = () => {
       id: 1,
       href: 'https://www.maprocuration.gouv.fr/',
       hrefEnglish: 'https://www.maprocuration.gouv.fr/',
-      logo: rdvlogo,
+      logo: maprocurationlogo,
       imageSrc: qrcodeProcuration,
       imageSrcEn: qrcodeEn,
       name: 'Ma procuration',
@@ -130,7 +131,7 @@ const Home = () => {
       imageSrcEn: qrcodeEn,
       name: 'Opération tranquillité vacances',
       englishName: 'Operation Vacation Tranquility',
-      text: 'Je souhaite signaler mon absence pour des patrouilles de surveillance.',
+      text: 'Je souhaite signaler mon absence pour la surveillance de mon domicile.',
       englishText: 'I want to report my absence for surveillance patrols.'
     },
     {
@@ -142,23 +143,11 @@ const Home = () => {
       imageSrcEn: qrcodeEn,
       name: 'Rendez-vous',
       englishName: 'I inform myself',
-      text: 'Je souhaite prendre rendez-vous pour une démarche.',
+      text: 'Je souhaite prendre rendez-vous dans un commissariat.',
       englishText: 'I want to make an appointment for a procedure.'
     },
     {
       id: 4,
-      href: 'https://www.masecurite.interieur.gouv.fr/fr',
-      hrefEnglish: 'https://www.masecurite.interieur.gouv.fr/en',
-      logo: masecuritelogo,
-      imageSrc: qrcodeSecurite,
-      imageSrcEn: qrcodeEn,
-      name: 'Ma sécurité',
-      englishName: 'My security',
-      text: 'Je suis victime / Je signale / Je m’informe.',
-      englishText: 'I am a victim / I report / I am informed.'
-    },
-    {
-      id: 5,
       href: 'https://www.service-public.fr/particuliers/vosdroits/N31138',
       hrefEnglish: 'https://www.service-public.fr/particuliers/vosdroits/N31138?lang=en',
       logo: theseelogo,
@@ -166,8 +155,20 @@ const Home = () => {
       imageSrcEn: qrcodeEn,
       name: 'Plainte pour escroqueries',
       englishName: 'Complaint for fraud',
-      text: "Je souhaite porter plainte pour escroqueries ou fraudes à l'adresse.",
+      text: 'Je souhaite porter plainte pour escroqueries sur internet.',
       englishText: 'I want to report fraud or scams to the address.'
+    },
+    {
+      id: 5,
+      href: 'https://www.masecurite.interieur.gouv.fr/fr',
+      hrefEnglish: 'https://www.masecurite.interieur.gouv.fr/en',
+      logo: masecuritelogo,
+      imageSrc: qrcodeSecurite,
+      imageSrcEn: qrcodeEn,
+      name: 'Ma sécurité',
+      englishName: 'My security',
+      text: 'Je suis victime / Je m’informe.',
+      englishText: 'I am a victim / I report / I am informed.'
     }
   ]
 
