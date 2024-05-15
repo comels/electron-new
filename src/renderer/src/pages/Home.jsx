@@ -118,9 +118,9 @@ const Home = () => {
       imageSrc: qrcodeProcuration,
       imageSrcEn: qrcodeEn,
       name: 'Ma procuration',
-      englishName: 'My proxy',
+      englishName: 'My voting proxy',
       text: 'Je souhaite déposer une demande de procuration.',
-      englishText: 'I want to submit a proxy request.'
+      englishText: 'I would like to request a proxy.'
     },
     {
       id: 2,
@@ -132,7 +132,7 @@ const Home = () => {
       name: 'Opération tranquillité vacances',
       englishName: 'Operation Vacation Tranquility',
       text: 'Je souhaite signaler mon absence pour la surveillance de mon domicile.',
-      englishText: 'I want to report my absence for surveillance patrols.'
+      englishText: 'I would like to report my absence for home surveillance.'
     },
     {
       id: 3,
@@ -144,7 +144,7 @@ const Home = () => {
       name: 'Rendez-vous',
       englishName: 'I inform myself',
       text: 'Je souhaite prendre rendez-vous dans un commissariat.',
-      englishText: 'I want to make an appointment for a procedure.'
+      englishText: 'I would like to make an appointment at a police station.'
     },
     {
       id: 4,
@@ -156,7 +156,7 @@ const Home = () => {
       name: 'Plainte pour escroqueries',
       englishName: 'Complaint for fraud',
       text: 'Je souhaite porter plainte pour escroqueries sur internet.',
-      englishText: 'I want to report fraud or scams to the address.'
+      englishText: 'I would like to file a complaint for internet scams.'
     },
     {
       id: 5,
@@ -168,7 +168,7 @@ const Home = () => {
       name: 'Ma sécurité',
       englishName: 'My security',
       text: 'Je suis victime / Je m’informe.',
-      englishText: 'I am a victim / I report / I am informed.'
+      englishText: "I'm a victim / I'm informed."
     }
   ]
 
@@ -259,7 +259,7 @@ const Home = () => {
       )}
       {isViewOpen && (
         // Boutons de navigation
-        <div className="flex gap-10 absolute top-0 left-0 right-0 px-10 py-9 bg-gradient-to-r from-[#8acff0] to-[#000091]">
+        <div className="flex gap-10 absolute top-0 left-0 right-0 px-10 py-5 bg-gradient-to-r from-[#8acff0] to-[#000091]">
           <Button onClick={handleCloseViewClick} className="text-xl" variant="outline">
             <FaHome className="h-7 w-7 mr-3 text-[#000091]" />
             {selectedLanguage === 'francais' ? (
