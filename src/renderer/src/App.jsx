@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import './assets/main.css'
+// import Home, { LanguageProvider } from './pages/Home' // Page d'accueil de l'application
 import Home, { LanguageProvider } from './pages/Home' // Page d'accueil de l'application
 import Veille from './pages/Veille' // Composant affiché en mode veille
 
@@ -17,7 +18,7 @@ const App = () => {
     const resetTimer = () => {
       clearTimeout(timeout) // Arrête le timer précédent
       setIsActive(true) // Réactive l'état actif
-      timeout = setTimeout(handleInactivity, 180000) // Déclenche la vérification d'inactivité après 3 minutes
+      timeout = setTimeout(handleInactivity, 60000) // Déclenche la vérification d'inactivité après 1 minute
     }
 
     /**
@@ -52,7 +53,7 @@ const App = () => {
   // Rendu conditionnel du composant Home ou Veille basé sur l'état isActive
   return (
     <LanguageProvider>
-      <div>{isActive ? <Home /> : <Veille />}</div>
+      <div>{!isActive ? <Home /> : <Veille />}</div>
     </LanguageProvider>
   )
 }

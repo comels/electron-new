@@ -87,19 +87,21 @@ function createNewWindow(url) {
   // Ouvre les outils de développement pour cette vue.
   // if (is.dev) currentView.webContents.openDevTools()
 
-  // Écouteurs d'événements pour détecter l'activité de l'utilisateur et réinitialiser le minuteur d'inactivité.
-  currentView.webContents.executeJavaScript(
-    `
-    if (window.electronAPI) {
-      document.addEventListener('mousemove', window.electronAPI.sendActivityDetected);
-      document.addEventListener('scroll', window.electronAPI.sendActivityDetected);
-      document.addEventListener('keydown', window.electronAPI.sendActivityDetected);
-    } else {
-      console.error('electronAPI is not available');
-    }
-        `,
-    true
-  )
+  // Ajoute un écouteur d'événements pour réappliquer les écouteurs d'activité lorsque la page est chargée.
+  currentView.webContents.on('did-finish-load', () => {
+    currentView.webContents.executeJavaScript(
+      `
+      if (window.electronAPI) {
+        document.addEventListener('mousemove', window.electronAPI.sendActivityDetected);
+        document.addEventListener('scroll', window.electronAPI.sendActivityDetected);
+        document.addEventListener('keydown', window.electronAPI.sendActivityDetected);
+      } else {
+        console.error('electronAPI is not available');
+      }
+      `,
+      true
+    )
+  })
 
   // Informe le processus de rendu qu'une nouvelle vue est active.
   mainWindow.webContents.send('update-view-status', true)
@@ -109,8 +111,8 @@ function createNewWindow(url) {
 function resetInactivityTimer() {
   clearTimeout(inactivityTimer)
   inactivityTimer = setTimeout(() => {
-    closeCurrentViewWithClearCache()
-  }, 60000) // Définit le délai d'inactivité à 1 minute.
+    closeCurrentView()
+  }, 120000) // Définit le délai d'inactivité à 2 minutes.
 }
 
 // Handler IPC pour la réinitialisation du minuteur d'inactivité suite à une activité détectée.
@@ -160,16 +162,6 @@ ipcMain.handle('get-current-view', () => {
 function closeCurrentView() {
   if (currentView) {
     currentView.webContents.session.clearStorageData().then(() => {
-      mainWindow.removeBrowserView(currentView)
-      currentView = null // Réinitialise la vue courante à null.
-      mainWindow.webContents.send('update-view-status', false) // Informe que la vue est fermée.
-    })
-  }
-}
-
-function closeCurrentViewWithClearCache() {
-  if (currentView) {
-    currentView.webContents.session.clearCache().then(() => {
       mainWindow.removeBrowserView(currentView)
       currentView = null // Réinitialise la vue courante à null.
       mainWindow.webContents.send('update-view-status', false) // Informe que la vue est fermée.

@@ -1,5 +1,6 @@
 import { useEffect, useRef } from 'react'
 import logo from '../assets/images/logo1.png' // Assurez-vous que le chemin vers votre logo est correct
+import { MdTouchApp } from 'react-icons/md'
 
 const Veille = () => {
   const width = 500 // Largeur du logo, ajustez selon les besoins
@@ -48,6 +49,7 @@ const Veille = () => {
           width: `${width}px`
         }}
       />
+      <MdTouchApp className="text-white bottom-20 right-20 absolute animate-pulse" size={130} />
     </div>
   )
 }

@@ -4,20 +4,18 @@ import { createContext, useContext, useEffect, useState } from 'react'
 import { FaHome } from 'react-icons/fa'
 import en from '../assets/images/EN.png'
 import fr from '../assets/images/FR.png'
-// import eu from '../assets/images/EU.png'
 import masecuritelogo from '../assets/images/MaSecurite-logo.png'
 import otvlogo from '../assets/images/OTV-logo.png'
 import rdvlogo from '../assets/images/RDV-logo.jpg'
 // import theseelogo from '../assets/images/THESEE-logo.png'
 import logo from '../assets/images/logo1.png'
-import qrcodeEn from '../assets/images/qrcode-en.png'
-import qrcodeProcuration from '../assets/images/qrcode-procuration.png'
 import qrcodeOTV from '../assets/images/qrcode-OTV.png'
 import qrcodeRDV from '../assets/images/qrcode-RDV.png'
-import qrcodeSecurite from '../assets/images/qrcode-securite.png'
 import qrcodeThesee from '../assets/images/qrcode-THESEE.png'
+import qrcodeEn from '../assets/images/qrcode-en.png'
+import qrcodeProcuration from '../assets/images/qrcode-procuration.png'
+import qrcodeSecurite from '../assets/images/qrcode-securite.png'
 import theseelogo from '../assets/images/theseeblanc-logo.png'
-// import Card from '../components/Card'
 import Cardlogo from '../components/Cardlogo'
 
 import { Button } from '../ui/button'
@@ -131,15 +129,14 @@ const Home = () => {
       imageSrc: qrcodeOTV,
       imageSrcEn: qrcodeEn,
       name: 'Opération tranquillité vacances',
-      englishName: 'Operation tranquility holidays',
+      englishName: 'Operation Vacation Tranquility',
       text: 'Je souhaite signaler mon absence pour des patrouilles de surveillance.',
       englishText: 'I want to report my absence for surveillance patrols.'
     },
     {
       id: 3,
-      href: 'https://www.prefecturedepolice.interieur.gouv.fr/vos-services-en-ligne/police-rendez-vous',
-      hrefEnglish:
-        'https://www.prefecturedepolice.interieur.gouv.fr/vos-services-en-ligne/police-rendez-vous',
+      href: 'https://www.masecurite.interieur.gouv.fr/fr/m-orienter?PRDV=1',
+      hrefEnglish: 'https://www.masecurite.interieur.gouv.fr/en/guide-yourself',
       logo: rdvlogo,
       imageSrc: qrcodeRDV,
       imageSrcEn: qrcodeEn,
@@ -175,46 +172,104 @@ const Home = () => {
   ]
 
   return (
-    <div className="relative select-none bg-gradient-to-r from-[#8acff0] to-[#000091] min-h-screen flex flex-col justify-center px-20">
+    <div>
       {!isViewOpen && (
         // Sélecteur de langue
-        <div className="flex absolute top-0 left-0 right-0 mx-10 py-4">
-          <Select
-            onValueChange={(value) => {
-              setSelectedLanguage(value)
-            }}
-            defaultValue={selectedLanguage}
-          >
-            <SelectTrigger className="w-[80px]">
-              <SelectValue placeholder="Select a language" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectGroup>
-                <SelectItem className="text-2xl" value="francais">
-                  <img src={fr} alt="FR" className="h-7 w-7" />
-                </SelectItem>
-                <SelectItem className="text-2xl" value="english">
-                  <img src={en} alt="EN" className="h-7 w-7" />
-                </SelectItem>
-              </SelectGroup>
-            </SelectContent>
-          </Select>
+        <div className="relative select-none bg-gradient-to-r from-[#8acff0] to-[#000091] min-h-screen flex flex-col justify-center px-20">
+          <div className="flex absolute top-0 left-0 right-0 mx-10 py-4">
+            <Select
+              onValueChange={(value) => {
+                setSelectedLanguage(value)
+              }}
+              defaultValue={selectedLanguage}
+            >
+              <SelectTrigger className="w-[80px]">
+                <SelectValue placeholder="Select a language" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectGroup>
+                  <SelectItem className="text-2xl" value="francais">
+                    <img src={fr} alt="FR" className="h-7 w-7" />
+                  </SelectItem>
+                  <SelectItem className="text-2xl" value="english">
+                    <img src={en} alt="EN" className="h-7 w-7" />
+                  </SelectItem>
+                </SelectGroup>
+              </SelectContent>
+            </Select>
+          </div>
+          <div className="flex w-full justify-center bg-fixed bg-center">
+            <div className="px-10">
+              <div className="grid grid-cols-3 gap-y-12 gap-x-10">
+                <div className="flex items-center flex-col mx-5">
+                  <img src={logo} alt="Logo-PN" className="h-full max-w-[450px] object-contain" />
+                </div>
+                {sites.map((site) => (
+                  <Cardlogo
+                    key={site.id}
+                    site={site}
+                    onClick={handleButtonClick}
+                    language={selectedLanguage}
+                  />
+                ))}
+              </div>
+            </div>
+          </div>
+          {/* Pour la saisie du mot de passe et fermer l'application */}
+          <div className="absolute right-5 bottom-5">
+            <Dialog>
+              <DialogTrigger asChild>
+                <Button size="sm" variant="outline">
+                  <Power className="text-[#000091] cursor-pointer" size={16} />
+                </Button>
+              </DialogTrigger>
+              <DialogContent className="max-w-[425px]">
+                <DialogHeader>
+                  <DialogTitle className="text-[#000091] text-xl">
+                    Action réservée aux agents
+                  </DialogTitle>
+                  <DialogDescription className=" text-sm">
+                    Passible d&apos;amendes.
+                  </DialogDescription>
+                </DialogHeader>
+                <form onSubmit={handlePasswordSubmit} className="grid gap-4 py-4">
+                  <div className="flex flex-col gap-4">
+                    <Label className="text-base text-[#000091]" htmlFor="password">
+                      Mot de passe
+                    </Label>
+                    <Input
+                      id="password"
+                      type="password"
+                      value={password}
+                      onChange={handlePasswordChange}
+                    />
+                    {errorMessage && <div className="text-red-500 text-xs">{errorMessage}</div>}
+                  </div>
+                  <DialogFooter>
+                    <Button className="text-base" type="submit">
+                      Valider
+                    </Button>
+                  </DialogFooter>
+                </form>
+              </DialogContent>
+            </Dialog>
+          </div>
         </div>
       )}
       {isViewOpen && (
         // Boutons de navigation
-        <div className="flex gap-10 absolute top-0 left-0 right-0 mx-10 py-4">
-          <Button onClick={handleCloseViewClick} className="text-lg" variant="outline">
-            <FaHome className="h-6 w-6 mr-3 text-[#000091]" />
+        <div className="flex gap-10 absolute top-0 left-0 right-0 px-10 py-9 bg-gradient-to-r from-[#8acff0] to-[#000091]">
+          <Button onClick={handleCloseViewClick} className="text-xl" variant="outline">
+            <FaHome className="h-7 w-7 mr-3 text-[#000091]" />
             {selectedLanguage === 'francais' ? (
-              <div className="text-[#000091] font-semibold tracking-wide">Accueil</div>
+              <div className="text-[#000091] font-semibold">Accueil</div>
             ) : (
               <div className="text-[#000091]">Home</div>
             )}
           </Button>
           <div className="flex gap-7">
             <Button onClick={handleBackClick} variant="outline" size="icon">
-              <ChevronLeft className="h-4 w-4 text-[#000091]" />
+              <ChevronLeft className="h-4 w-4 font-bold text-[#000091]" />
             </Button>
             <Button onClick={handleForwardClick} variant="outline" size="icon">
               <ChevronRight className="h-4 w-4 text-[#000091]" />
@@ -222,65 +277,6 @@ const Home = () => {
           </div>
         </div>
       )}
-      <div className="flex w-full justify-center bg-fixed bg-center">
-        <div className="px-10">
-          <div className="grid grid-cols-3 gap-y-12 gap-x-10">
-            <div className="flex items-center flex-col mx-5">
-              <img src={logo} alt="Logo-PN" className="h-full max-w-[450px] object-contain" />
-              {/* <img
-                src={eu}
-                alt="Logo-EU"
-                className="h-1/2 w-1/2 object-contain rounded-lg scale-100"
-              /> */}
-            </div>
-            {sites.map((site) => (
-              <Cardlogo
-                key={site.id}
-                site={site}
-                onClick={handleButtonClick}
-                language={selectedLanguage}
-              />
-            ))}
-          </div>
-        </div>
-      </div>
-      {/* Pour la saisie du mot de passe et fermer l'application */}
-      <div className="absolute right-5 bottom-5">
-        <Dialog>
-          <DialogTrigger asChild>
-            <Button size="sm" variant="outline">
-              <Power className="text-[#000091] cursor-pointer" size={16} />
-            </Button>
-          </DialogTrigger>
-          <DialogContent className="max-w-[425px]">
-            <DialogHeader>
-              <DialogTitle className="text-[#000091] text-xl">
-                Action réservée aux agents
-              </DialogTitle>
-              <DialogDescription className=" text-sm">Passible d&apos;amendes.</DialogDescription>
-            </DialogHeader>
-            <form onSubmit={handlePasswordSubmit} className="grid gap-4 py-4">
-              <div className="flex flex-col gap-4">
-                <Label className="text-base text-[#000091]" htmlFor="password">
-                  Mot de passe
-                </Label>
-                <Input
-                  id="password"
-                  type="password"
-                  value={password}
-                  onChange={handlePasswordChange}
-                />
-                {errorMessage && <div className="text-red-500 text-xs">{errorMessage}</div>}
-              </div>
-              <DialogFooter>
-                <Button className="text-base" type="submit">
-                  Valider
-                </Button>
-              </DialogFooter>
-            </form>
-          </DialogContent>
-        </Dialog>
-      </div>
     </div>
   )
 }
