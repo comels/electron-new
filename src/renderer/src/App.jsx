@@ -53,7 +53,7 @@ const App = () => {
   // Rendu conditionnel du composant Home ou Veille basé sur l'état isActive
   return (
     <LanguageProvider>
-      <div>{!isActive ? <Home /> : <Veille />}</div>
+      <div>{isActive ? <Home /> : <Veille />}</div>
     </LanguageProvider>
   )
 }
