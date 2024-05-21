@@ -4,8 +4,8 @@ import { createContext, useContext, useEffect, useState } from 'react'
 import { FaHome } from 'react-icons/fa'
 import en from '../assets/images/EN.png'
 import fr from '../assets/images/FR.png'
-import masecuritelogo from '../assets/images/MaSecurite-logo.png'
 import maprocurationlogo from '../assets/images/MaProcuration-logo.png'
+import masecuritelogo from '../assets/images/MaSecurite-logo.png'
 import otvlogo from '../assets/images/OTV-logo.png'
 import rdvlogo from '../assets/images/RDV-logo.png'
 // import theseelogo from '../assets/images/THESEE-logo.png'
@@ -18,7 +18,6 @@ import qrcodeProcuration from '../assets/images/qrcode-procuration.png'
 import qrcodeSecurite from '../assets/images/qrcode-securite.png'
 import theseelogo from '../assets/images/theseeblanc-logo.png'
 import Cardlogo from '../components/Cardlogo'
-
 import { Button } from '../ui/button'
 import {
   Dialog,

@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react'
-import logo from '../assets/images/logo1.png' // Assurez-vous que le chemin vers votre logo est correct
 import { MdTouchApp } from 'react-icons/md'
+import logo from '../assets/images/logo1.png' // Assurez-vous que le chemin vers votre logo est correct
 
 const Veille = () => {
   const width = 500 // Largeur du logo, ajustez selon les besoins
@@ -44,7 +44,7 @@ const Veille = () => {
         ref={logoRef}
         src={logo}
         alt="logo"
-        className="fixed"
+        className="fixed z-10"
         style={{
           width: `${width}px`
         }}

@@ -19,7 +19,7 @@ function createWindow() {
       width,
       height,
       show: false, // La fenêtre ne s'affichera pas immédiatement après sa création.
-      kiosk: true, // Active le mode kiosque.
+      //kiosk: true, // Active le mode kiosque.
       autoHideMenuBar: true, // Empêche la barre de menu de se cacher automatiquement.
       webPreferences: {
         preload: join(__dirname, '../preload/index.js'), // Chemin vers le script de préchargement.
