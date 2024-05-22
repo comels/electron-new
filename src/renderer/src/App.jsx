@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react'
 import './assets/main.css'
 // import Home, { LanguageProvider } from './pages/Home' // Page d'accueil de l'application
-import Home, { LanguageProvider } from './pages/Home' // Page d'accueil de l'application
+import { LanguageProvider } from './LanguageContext'
+import Home from './pages/Home' // Page d'accueil de l'application
 import Veille from './pages/Veille' // Composant affiché en mode veille
 
 /**
