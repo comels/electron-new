@@ -30,7 +30,7 @@ const Home = () => {
     <div>
       {/* Affiche la sélection de langue et les logos des sites si aucune vue spécifique n'est ouverte */}
       {!isViewOpen && (
-        <div className="relative select-none bg-gradient-to-r from-[#8acff0] to-[#000091] min-h-screen flex flex-col justify-center px-28">
+        <div className="relative select-none bg-gradient-to-r from-bluelight to-blue min-h-screen flex flex-col justify-center px-28">
           {/* Composant pour sélectionner la langue */}
           <LanguageSelector />
           {/* Grille pour afficher le logo principal et les logos des sites */}

@@ -19,23 +19,23 @@ export default function NavButtons() {
   const handleForwardClick = () => window.electronAPI.navigateForward()
 
   return (
-    <div className="flex gap-10 absolute top-0 left-0 right-0 px-10 py-5 bg-gradient-to-r from-[#8acff0] to-[#000091]">
+    <div className="flex gap-10 absolute top-0 left-0 right-0 px-10 py-5 bg-gradient-to-r from-bluelight to-blue">
       {/* Bouton pour revenir à l'accueil */}
       <Button onClick={handleCloseViewClick} className="text-xl" variant="outline">
-        <FaHome className="h-7 w-7 mr-3 text-[#000091]" />
+        <FaHome className="h-7 w-7 mr-3 text-blue" />
         {selectedLanguage === 'francais' ? (
-          <div className="text-[#000091] font-semibold">Accueil</div>
+          <div className="text-blue font-semibold">Accueil</div>
         ) : (
-          <div className="text-[#000091]">Home</div>
+          <div className="text-blue">Home</div>
         )}
       </Button>
       {/* Boutons de navigation arrière et avant */}
       <div className="flex gap-7">
         <Button onClick={handleBackClick} variant="outline" size="icon">
-          <ChevronLeft className="h-4 w-4 font-bold text-[#000091]" />
+          <ChevronLeft className="h-4 w-4 font-bold text-blue" />
         </Button>
         <Button onClick={handleForwardClick} variant="outline" size="icon">
-          <ChevronRight className="h-4 w-4 text-[#000091]" />
+          <ChevronRight className="h-4 w-4 text-blue" />
         </Button>
       </div>
     </div>

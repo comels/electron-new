@@ -24,7 +24,7 @@ const Cardlogo = ({ site }) => {
       aria-label={`Open ${name}`}
     >
       <div className="bg-white bg-opacity-80 hover:bg-opacity-60 rounded-md w-full max-w-lg h-full flex flex-col p-2">
-        <div className="bg-[#000091] bg-opacity-80 min-h-52 mb-3 flex-grow gap-3 flex px-5">
+        <div className="bg-blue bg-opacity-80 min-h-52 mb-3 flex-grow gap-3 flex px-5">
           <div className="w-2/3 flex justify-center items-center">
             {/* Logo principal du site */}
             <img src={site.logo} alt={name} className="rounded-xl max-h-36" loading="lazy" />
@@ -37,13 +37,13 @@ const Cardlogo = ({ site }) => {
         <div className="p-3 flex flex-col justify-between flex-grow">
           <div>
             {/* Nom du site */}
-            <h1 className="text-2xl mb-1 text-left font-semibold text-[#000091]">{name}</h1>
+            <h1 className="text-2xl mb-1 text-left font-semibold text-blue">{name}</h1>
             {/* Description du site */}
             <p className="text-lg text-left text-gray-600">{text}</p>
           </div>
           {/* Icône de flèche indiquant l'action */}
           <div className="flex justify-end">
-            <ArrowRight className="text-[#000091] mt-4 mx-2" />
+            <ArrowRight className="text-blue mt-4 mx-2" />
           </div>
         </div>
       </div>

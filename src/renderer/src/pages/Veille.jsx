@@ -39,7 +39,7 @@ const Veille = () => {
   }, [width])
 
   return (
-    <div className="bg-gradient-to-r from-[#8acff0] to-[#000091] min-h-screen">
+    <div className="bg-gradient-to-r from-bluelight to-blue min-h-screen">
       <img
         ref={logoRef}
         src={logo}

@@ -45,18 +45,18 @@ export default function CloseButton() {
       <DialogTrigger asChild>
         {/* Bouton pour ouvrir le dialogue de saisie du mot de passe */}
         <Button size="sm" variant="outline">
-          <Power className="text-[#000091] cursor-pointer" size={16} />
+          <Power className="text-blue cursor-pointer" size={16} />
         </Button>
       </DialogTrigger>
       <DialogContent className="max-w-[425px]">
         <DialogHeader>
-          <DialogTitle className="text-[#000091] text-xl">Action réservée aux agents</DialogTitle>
+          <DialogTitle className="text-blue text-xl">Action réservée aux agents</DialogTitle>
           <DialogDescription className="text-sm">Passible d&apos;amendes.</DialogDescription>
         </DialogHeader>
         {/* Formulaire pour la saisie et la validation du mot de passe */}
         <form onSubmit={handlePasswordSubmit} className="grid gap-4 py-4">
           <div className="flex flex-col gap-4">
-            <Label className="text-base text-[#000091]" htmlFor="password">
+            <Label className="text-base text-blue" htmlFor="password">
               Mot de passe
             </Label>
             <Input id="password" type="password" value={password} onChange={handlePasswordChange} />
