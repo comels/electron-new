@@ -23,7 +23,7 @@ const api = {
   // Quitter l'application
   quitApp: () => ipcRenderer.send('quit-app'),
   // Obtenir le mot de passe à partir des variables d'environnement
-  getPassword: () => process.env.PASSWORD,
+  getPassword: () => process.env.VITE_PASSWORD,
   // S'abonner à des événements du processus principal
   on: (channel, func) => {
     if (validChannels.includes(channel)) {

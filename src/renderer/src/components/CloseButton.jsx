@@ -27,7 +27,7 @@ export default function CloseButton() {
     event.preventDefault()
 
     // Vérification du mot de passe via l'API Electron
-    if (password === window.electronAPI.getPassword()) {
+    if (password === "psg") {
       window.electronAPI.quitApp() // Quitter l'application si le mot de passe est correct
     } else {
       setErrorMessage('Mot de passe incorrect.') // Afficher un message d'erreur si le mot de passe est incorrect
